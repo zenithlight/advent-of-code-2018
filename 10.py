@@ -18,12 +18,12 @@ def get_area(bounds):
 def print_points(points):
     min_x, max_x, min_y, max_y = get_bounds(points)
 
-    width = max_x - min_x
-    height = max_y - min_y
+    width = 1 + max_x - min_x
+    height = 1 + max_y - min_y
 
     grid = []
-    for i in range(height + 1):
-        row = ['.' for _ in range(width + 1)]
+    for i in range(height):
+        row = ['.' for _ in range(width)]
         grid.append(row)
 
     for point in points:
@@ -41,15 +41,13 @@ def solve(points):
     last_area = get_area(get_bounds(test_points))
     iterations = 0
     while True:
-        iterations += 1
         test_points = update_points(test_points)
 
         if get_area(get_bounds(test_points)) > last_area:
             break
 
         last_area = get_area(get_bounds(test_points))
-
-    iterations -= 1
+        iterations += 1
 
     for i in range(iterations):
         points = update_points(points)
