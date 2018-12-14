@@ -122,6 +122,9 @@ def b(carts, tracks):
                     cart['should_remove'] = True
                     cart2['should_remove'] = True
 
+                    if len(carts) == 1:
+                        return ','.join([str(coordinate) for coordinate in carts[0]['location']][::-1])
+
 with open('input/13', 'r') as file:
     lines = [line.replace('\n', '') for line in file.readlines()]
 
